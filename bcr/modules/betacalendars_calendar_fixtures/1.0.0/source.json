@@ -1,5 +1,6 @@
 {
   "url": "https://github.com/mateopedersen/betacalendars-bazel-calendar-fixtures/archive/refs/tags/v1.0.0.tar.gz",
   "strip_prefix": "betacalendars-bazel-calendar-fixtures-1.0.0",
-  "integrity": "sha256-FGku6UPI2Zqt8Qz3iUwGwYNO2loO7F4uycZezKQD5p0="
+  "integrity": "sha256-y6gmKhT/q2b8ZyTYiA8Sk1+tRAps22RWKeiS0PKATeY=",
+  "docs_url": "https://github.com/mateopedersen/betacalendars-bazel-calendar-fixtures/releases/download/v1.0.0/stardoc.tar.gz"
 }
