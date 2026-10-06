@@ -1,0 +1,18 @@
+exports_files(
+    [
+        "date_math.bzl",
+        "grid.bzl",
+        "serialize.bzl",
+    ],
+    visibility = ["//calendar:__pkg__"],
+)
+
+filegroup(
+    name = "starlark_sources",
+    srcs = [
+        "date_math.bzl",
+        "grid.bzl",
+        "serialize.bzl",
+    ],
+    visibility = ["//calendar:__pkg__"],
+)

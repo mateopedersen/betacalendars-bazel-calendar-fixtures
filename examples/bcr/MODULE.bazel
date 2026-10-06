@@ -1,0 +1,7 @@
+module(name = "betacalendars_calendar_fixtures_bcr_test")
+
+bazel_dep(name = "betacalendars_calendar_fixtures", version = "1.0.0")
+local_path_override(
+    module_name = "betacalendars_calendar_fixtures",
+    path = "../..",
+)

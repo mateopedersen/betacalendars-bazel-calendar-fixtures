@@ -1,0 +1,44 @@
+load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
+load("//calendar:defs.bzl", "calendar_range")
+load(":calendar_test.bzl", "calendar_test_suite")
+
+calendar_test_suite(name = "calendar_tests")
+
+calendar_range(
+    name = "golden_json_output",
+    end_date = "2027-01-03",
+    format = "json",
+    start_date = "2027-01-01",
+)
+
+calendar_range(
+    name = "golden_csv_output",
+    end_date = "2027-01-03",
+    format = "csv",
+    start_date = "2027-01-01",
+)
+
+calendar_range(
+    name = "golden_markdown_output",
+    end_date = "2027-01-03",
+    format = "markdown",
+    start_date = "2027-01-01",
+)
+
+diff_test(
+    name = "json_golden_test",
+    file1 = "goldens/range.json",
+    file2 = "golden_json_output",
+)
+
+diff_test(
+    name = "csv_golden_test",
+    file1 = "goldens/range.csv",
+    file2 = "golden_csv_output",
+)
+
+diff_test(
+    name = "markdown_golden_test",
+    file1 = "goldens/range.md",
+    file2 = "golden_markdown_output",
+)

@@ -1,7 +1,13 @@
-exports_files(["LICENSE", "README.md"])
+exports_files([
+    "LICENSE",
+    "README.md",
+])
 
 filegroup(
     name = "public_api",
-    srcs = ["calendar/defs.bzl", "calendar/providers.bzl"],
+    srcs = [
+        "calendar/defs.bzl",
+        "calendar/providers.bzl",
+    ],
     visibility = ["//visibility:public"],
 )

@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  buildifier:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: stable
+      - name: Install buildifier
+        run: go install github.com/bazelbuild/buildtools/buildifier@latest
+      - name: Check formatting
+        run: "$(go env GOPATH)/bin/buildifier -mode=check -r ."
+  bazel:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, macos-13, macos-14, windows-2022]
+        bazel: [7.x, 8.x, 9.x]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          bazelisk-version: 1.x
+          repository-cache: true
+      - name: Test rules
+        env:
+          USE_BAZEL_VERSION: ${{ matrix.bazel }}
+        run: bazel test //tests/...
+      - name: Test BCR consumer module
+        working-directory: examples/bcr
+        env:
+          USE_BAZEL_VERSION: ${{ matrix.bazel }}
+        run: bazel build //:all
+      - name: Test year-turn consumer module
+        working-directory: examples/year_turn
+        env:
+          USE_BAZEL_VERSION: ${{ matrix.bazel }}
+        run: bazel build //:all
+      - name: Extract registry API documentation
+        env:
+          USE_BAZEL_VERSION: ${{ matrix.bazel }}
+        run: bazel build //calendar:api_docs //calendar:providers_docs

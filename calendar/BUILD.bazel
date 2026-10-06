@@ -1,0 +1,27 @@
+exports_files(
+    [
+        "defs.bzl",
+        "providers.bzl",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+filegroup(
+    name = "starlark_deps",
+    srcs = [
+        "providers.bzl",
+        "//calendar/private:starlark_sources",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+starlark_doc_extract(
+    name = "api_docs",
+    src = "defs.bzl",
+    deps = [":starlark_deps"],
+)
+
+starlark_doc_extract(
+    name = "providers_docs",
+    src = "providers.bzl",
+)

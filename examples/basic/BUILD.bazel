@@ -1,0 +1,15 @@
+load("@betacalendars_calendar_fixtures//calendar:defs.bzl", "calendar_month", "calendar_range")
+
+calendar_month(
+    name = "january_2027",
+    format = "json",
+    month = 1,
+    year = 2027,
+)
+
+calendar_range(
+    name = "year_turn",
+    end_date = "2027-01-04",
+    format = "csv",
+    start_date = "2026-12-29",
+)

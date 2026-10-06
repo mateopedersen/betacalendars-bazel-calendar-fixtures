@@ -1,0 +1,29 @@
+load("@betacalendars_calendar_fixtures//calendar:defs.bzl", "calendar_boundary_matrix", "calendar_month", "calendar_year")
+
+calendar_month(
+    name = "january_2027",
+    layout = "fixed",
+    month = 1,
+    overflow = "adjacent",
+    week_start = "monday",
+    year = 2027,
+)
+
+calendar_year(
+    name = "year_2028",
+    format = "json",
+    year = 2028,
+)
+
+calendar_boundary_matrix(
+    name = "boundaries",
+    years = [
+        1900,
+        2000,
+        2024,
+        2027,
+        2028,
+        2100,
+        2400,
+    ],
+)

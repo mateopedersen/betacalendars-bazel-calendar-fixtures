@@ -1,0 +1,61 @@
+load("@betacalendars_calendar_fixtures//calendar:defs.bzl", "calendar_month", "calendar_year")
+
+calendar_month(
+    name = "november_2026",
+    month = 11,
+    year = 2026,
+)
+
+calendar_month(
+    name = "december_2026",
+    month = 12,
+    year = 2026,
+)
+
+calendar_month(
+    name = "january_2027",
+    month = 1,
+    year = 2027,
+)
+
+calendar_month(
+    name = "february_2027",
+    month = 2,
+    year = 2027,
+)
+
+calendar_month(
+    name = "november_2027",
+    month = 11,
+    year = 2027,
+)
+
+calendar_month(
+    name = "december_2027",
+    month = 12,
+    year = 2027,
+)
+
+calendar_month(
+    name = "january_2028",
+    month = 1,
+    year = 2028,
+)
+
+calendar_month(
+    name = "february_2028",
+    month = 2,
+    year = 2028,
+)
+
+calendar_year(
+    name = "year_2027",
+    format = "json",
+    year = 2027,
+)
+
+calendar_year(
+    name = "year_2028",
+    format = "json",
+    year = 2028,
+)

@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  github-release:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          bazelisk-version: 1.x
+          repository-cache: true
+      - name: Build API documentation
+        run: bazel build //calendar:api_docs //calendar:providers_docs
+      - name: Package API documentation
+        run: |
+          mkdir -p dist/docs
+          cp bazel-bin/calendar/api_docs.binaryproto dist/docs/
+          cp bazel-bin/calendar/providers_docs.binaryproto dist/docs/
+          tar -czf dist/stardoc.tar.gz -C dist docs
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${GITHUB_REF_NAME}" --generate-notes dist/stardoc.tar.gz
